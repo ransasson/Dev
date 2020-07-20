@@ -10,13 +10,15 @@ public class SearchEngine {
 		System.out.println("If you would like to search by kind enter true else false");
 		byKind=scan.nextBoolean();
 		if(byKind) {
-			System.out.println("Arrivals or Departures?");
+			System.out.println("enter: Arrival / Departure ");
+			scan.nextLine();
 			kind=scan.nextLine();
 		}
 		System.out.println("If you would like to search by Airline enter true else false");
 		byAirline=scan.nextBoolean();
 		if(byAirline) {
 			System.out.println("which airline?");
+			scan.nextLine();
 			airline=scan.nextLine();
 		}
 		System.out.println("If you would like to search by Origin enter true else false");
@@ -29,20 +31,24 @@ public class SearchEngine {
 		ByDestenation=scan.nextBoolean();
 		if(ByDestenation) {
 			System.out.println("which destination?");
+			scan.nextLine();
 			destenation=scan.nextLine();
 		}
 		System.out.println("If you would like to search by Fligh Number enter true else false");
 		byFlighNumber=scan.nextBoolean();
 		if(byFlighNumber) {
 			System.out.println("which flight number?");
+			scan.nextLine();
 			flightNumber=scan.nextLine();
 		}
 		System.out.println("If you would like to search by Date enter true else false");
 		byDate=scan.nextBoolean();
 		if(byDate) {
 			System.out.println("which date first? dd/mm/yyyy hh:mm");
+			scan.nextLine();
 			dateFirst=scan.nextLine();
 			System.out.println("which date last? dd/mm/yyyy hh:mm");
+			scan.nextLine();
 			dateLast=scan.nextLine();
 		}
 	}
