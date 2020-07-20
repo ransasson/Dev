@@ -48,7 +48,6 @@ public class SearchEngine {
 			scan.nextLine();
 			dateFirst=scan.nextLine();
 			System.out.println("which date last? dd/mm/yyyy hh:mm");
-			scan.nextLine();
 			dateLast=scan.nextLine();
 		}
 	}
