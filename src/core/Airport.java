@@ -10,7 +10,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
-import com.sun.org.apache.xml.internal.security.utils.HelperNodeList;
 
 public class Airport {
 	private String name;
