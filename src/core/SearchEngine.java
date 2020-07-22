@@ -25,6 +25,7 @@ public class SearchEngine {
 		byOrigin=scan.nextBoolean();
 		if(byOrigin) {
 			System.out.println("which origin?");
+			scan.nextLine();
 			origin=scan.nextLine();
 		}
 		System.out.println("If you would like to search by Destenation enter true else false");

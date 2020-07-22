@@ -144,10 +144,16 @@ public class Airport {
 		if(helper.isByOrigin()) {
 			flightAfterSearch=searchByOrigin(helper.getOrigin(), flightAfterSearch);
 		}
-		StringBuffer sb= new StringBuffer("Here are all the flights according to your search:\n");
-		for (int i = 0; i < flightAfterSearch.size(); i++) {
-			sb.append(flightAfterSearch.get(i).toString());
+		StringBuffer sb= new StringBuffer();
+		if(flightAfterSearch.size()!=0) {
+			sb.append("Here are all the flights according to your search:\n");
+			for (int i = 0; i < flightAfterSearch.size(); i++) {
+				sb.append(flightAfterSearch.get(i).toString());
+			}
+		}else {
+			sb.append("No flights found");
 		}
+		
 		return sb.toString();
 	}
 	public String searchFlights(boolean byKind, boolean byAirline, boolean byOrigin, boolean ByDestenation ,
@@ -184,9 +190,14 @@ public class Airport {
 		if(helper.isByOrigin()) {
 			flightAfterSearch=searchByOrigin(helper.getOrigin(), flightAfterSearch);
 		}
-		StringBuffer sb= new StringBuffer("Here are all the flights according to your search:\n");
-		for (int i = 0; i < flightAfterSearch.size(); i++) {
-			sb.append(flightAfterSearch.get(i).toString());
+		StringBuffer sb= new StringBuffer();
+		if(flightAfterSearch.size()!=0) {
+			sb.append("Here are all the flights according to your search:\n");
+			for (int i = 0; i < flightAfterSearch.size(); i++) {
+				sb.append(flightAfterSearch.get(i).toString());
+			}
+		}else {
+			sb.append("No flights found");
 		}
 		return sb.toString();
 	}
