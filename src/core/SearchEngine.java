@@ -3,8 +3,8 @@ package core;
 import java.util.Scanner;
 
 public class SearchEngine {
-	private boolean byKind, byAirline, byOrigin,ByDestenation, byFlighNumber, byDate;
-	private String kind,airline,origin,destenation, flightNumber,dateFirst, dateLast;
+	private boolean byKind, byAirline, byOrigin,ByDestenation, byFlighNumber, byDate, byDay;
+	private String kind,airline,origin,destenation, flightNumber,dateFirst, dateLast, day;
 	
 	public SearchEngine(Scanner scan) {
 		System.out.println("If you would like to search by kind enter true else false");
@@ -42,6 +42,13 @@ public class SearchEngine {
 			scan.nextLine();
 			flightNumber=scan.nextLine();
 		}
+		System.out.println("If you would like to search by day in the week enter true else false");
+		byDay=scan.nextBoolean();
+		if(byDay) {
+			System.out.println("which day?");
+			scan.nextLine();
+			day=scan.nextLine();
+		}
 		System.out.println("If you would like to search by Date enter true else false");
 		byDate=scan.nextBoolean();
 		if(byDate) {
@@ -53,14 +60,15 @@ public class SearchEngine {
 		}
 	}
 	public SearchEngine(boolean byKind, boolean byAirline, boolean byOrigin, boolean ByDestenation ,
-			boolean byFlighNumber, boolean byDate, String kind, String airline, String origin, String destenation,
-			String flightNumber,String datefirst, String dateLast) {
+			boolean byFlighNumber, boolean byDate, boolean byDay, String kind, String airline, String origin, String destenation,
+			String flightNumber,String datefirst, String dateLast, String day) {
 		this.byKind=byKind;
 		this.byAirline=byAirline;
 		this.byOrigin=byOrigin;
 		this.ByDestenation=ByDestenation;
 		this.byFlighNumber=byFlighNumber;
 		this.byDate=byDate;
+		this.byDay=byDay;
 		this.kind=kind;
 		this.airline=airline;
 		this.origin=origin;
@@ -68,6 +76,7 @@ public class SearchEngine {
 		this.flightNumber=flightNumber;
 		this.dateFirst=datefirst;
 		this.dateLast=dateLast;
+		this.day=day;
 	}
 	
 
@@ -99,6 +108,10 @@ public class SearchEngine {
 	public boolean isByDate() {
 		return byDate;
 	}
+	
+	public boolean isByDay() {
+		return byDay;
+	}
 	public String getKind() {
 		return kind;
 	}
@@ -125,7 +138,11 @@ public class SearchEngine {
 	public String getDatelast() {
 		return dateLast;
 	}
-
+	
+	public String getDay() {
+		return day;
+	}
+	
 	
 	
 	

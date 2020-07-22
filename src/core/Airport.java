@@ -144,6 +144,10 @@ public class Airport {
 		if(helper.isByOrigin()) {
 			flightAfterSearch=searchByOrigin(helper.getOrigin(), flightAfterSearch);
 		}
+		if(helper.isByDay()) {
+			flightAfterSearch=searchByDay(helper.getDay(), flightAfterSearch);
+		}
+		
 		StringBuffer sb= new StringBuffer();
 		if(flightAfterSearch.size()!=0) {
 			sb.append("Here are all the flights according to your search:\n");
@@ -156,12 +160,13 @@ public class Airport {
 		
 		return sb.toString();
 	}
+
 	public String searchFlights(boolean byKind, boolean byAirline, boolean byOrigin, boolean ByDestenation ,
-			boolean byFlighNumber, boolean byDate, String kind, String airline, String origin, String destenation,
-			String flightNumber,String datefirst, String dateLast) {
+			boolean byFlighNumber, boolean byDate, boolean byDay, String kind, String airline, String origin, String destenation,
+			String flightNumber,String datefirst, String dateLast, String day) {
 		SearchEngine helper= new SearchEngine( byKind,  byAirline,  byOrigin,  ByDestenation ,
-				 byFlighNumber,  byDate,  kind,  airline,  origin,  destenation,
-				 flightNumber, datefirst,  dateLast);
+				 byFlighNumber,  byDate, byDay, kind,  airline,  origin,  destenation,
+				 flightNumber, datefirst,  dateLast, day);
 		List<Flight> flightAfterSearch=new ArrayList<Flight>();;
 		for (int i = 0; i < arrivals.size(); i++) {
 			Flight temp=new Flight(arrivals.get(i));
@@ -189,6 +194,9 @@ public class Airport {
 		}
 		if(helper.isByOrigin()) {
 			flightAfterSearch=searchByOrigin(helper.getOrigin(), flightAfterSearch);
+		}
+		if(helper.isByDay()) {
+			flightAfterSearch=searchByDay(helper.getDay(), flightAfterSearch);
 		}
 		StringBuffer sb= new StringBuffer();
 		if(flightAfterSearch.size()!=0) {
@@ -276,6 +284,15 @@ public class Airport {
 		return allFlights;
 	}
 	
+	public List<Flight> searchByDay(String day, List<Flight> allFlights) {
+		for (int i = 0; i < allFlights.size(); i++) {
+			if (!(allFlights.get(i).getDay().equals(day))) {
+				allFlights.remove(i);
+				i--;
+			}
+		}
+		return allFlights;
+	}
 	
 	public LocalDateTime stringToDate(String dateandTime) {
 		String[] dateAndTimeS= dateandTime.split(" ");
