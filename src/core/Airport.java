@@ -10,6 +10,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
+
 public class Airport {
 	private String name;
 	private  List <Flight> departures;
@@ -143,18 +144,29 @@ public class Airport {
 		if(helper.isByOrigin()) {
 			flightAfterSearch=searchByOrigin(helper.getOrigin(), flightAfterSearch);
 		}
-		StringBuffer sb= new StringBuffer();
-		for (int i = 0; i < flightAfterSearch.size(); i++) {
-			sb.append(flightAfterSearch.get(i).toString());
+		if(helper.isByDay()) {
+			flightAfterSearch=searchByDay(helper.getDay(), flightAfterSearch);
 		}
+		
+		StringBuffer sb= new StringBuffer();
+		if(flightAfterSearch.size()!=0) {
+			sb.append("Here are all the flights according to your search:\n");
+			for (int i = 0; i < flightAfterSearch.size(); i++) {
+				sb.append(flightAfterSearch.get(i).toString());
+			}
+		}else {
+			sb.append("No flights found");
+		}
+		
 		return sb.toString();
 	}
+
 	public String searchFlights(boolean byKind, boolean byAirline, boolean byOrigin, boolean ByDestenation ,
-			boolean byFlighNumber, boolean byDate, String kind, String airline, String origin, String destenation,
-			String flightNumber,String datefirst, String dateLast) {
+			boolean byFlighNumber, boolean byDate, boolean byDay, String kind, String airline, String origin, String destenation,
+			String flightNumber,String datefirst, String dateLast, String day) {
 		SearchEngine helper= new SearchEngine( byKind,  byAirline,  byOrigin,  ByDestenation ,
-				 byFlighNumber,  byDate,  kind,  airline,  origin,  destenation,
-				 flightNumber, datefirst,  dateLast);
+				 byFlighNumber,  byDate, byDay, kind,  airline,  origin,  destenation,
+				 flightNumber, datefirst,  dateLast, day);
 		List<Flight> flightAfterSearch=new ArrayList<Flight>();;
 		for (int i = 0; i < arrivals.size(); i++) {
 			Flight temp=new Flight(arrivals.get(i));
@@ -183,9 +195,17 @@ public class Airport {
 		if(helper.isByOrigin()) {
 			flightAfterSearch=searchByOrigin(helper.getOrigin(), flightAfterSearch);
 		}
+		if(helper.isByDay()) {
+			flightAfterSearch=searchByDay(helper.getDay(), flightAfterSearch);
+		}
 		StringBuffer sb= new StringBuffer();
-		for (int i = 0; i < flightAfterSearch.size(); i++) {
-			sb.append(flightAfterSearch.get(i).toString());
+		if(flightAfterSearch.size()!=0) {
+			sb.append("Here are all the flights according to your search:\n");
+			for (int i = 0; i < flightAfterSearch.size(); i++) {
+				sb.append(flightAfterSearch.get(i).toString());
+			}
+		}else {
+			sb.append("No flights found");
 		}
 		return sb.toString();
 	}
@@ -222,14 +242,8 @@ public class Airport {
 	
 	
 	public List<Flight> searchByOrigin(String origin, List<Flight> allFlights){
-		for (int i = 0; i < arrivals.size(); i++) {
-			if(!(arrivals.get(i).getOrigin().equals(origin))) {
-				allFlights.remove(i);
-				i--;
-			}
-		}
-		for (int i = 0; i < departures.size(); i++) {
-			if(!(departures.get(i).getOrigin().equals(origin))) {
+		for (int i = 0; i < allFlights.size(); i++) {
+			if (!(allFlights.get(i).getOrigin().equals(origin))) {
 				allFlights.remove(i);
 				i--;
 			}
@@ -238,14 +252,8 @@ public class Airport {
 	}
 	
 	public List<Flight> searchByDestenation(String destenation, List<Flight> allFlights){
-		for (int i = 0; i < arrivals.size(); i++) {
-			if(!(arrivals.get(i).getDestination().equals(destenation))) {
-				allFlights.remove(i);
-				i--;
-			}
-		}
-		for (int i = 0; i < departures.size(); i++) {
-			if(!(departures.get(i).getDestination().equals(destenation))) {
+		for (int i = 0; i < allFlights.size(); i++) {
+			if (!(allFlights.get(i).getDestination().equals(destenation))) {
 				allFlights.remove(i);
 				i--;
 			}
@@ -254,14 +262,8 @@ public class Airport {
 	}
 	
 	public List<Flight> searchByFlightNumner(String flightNumber, List<Flight> allFlights){
-		for (int i = 0; i < arrivals.size(); i++) {
-			if(!(arrivals.get(i).getFlightNumber().equals(flightNumber))) {
-				allFlights.remove(i);
-				i--;
-			}
-		}
-		for (int i = 0; i < departures.size(); i++) {
-			if(!(departures.get(i).getFlightNumber().equals(flightNumber))) {
+		for (int i = 0; i < allFlights.size(); i++) {
+			if(!(allFlights.get(i).getFlightNumber().equals(flightNumber))) {
 				allFlights.remove(i);
 				i--;
 			}
@@ -271,26 +273,26 @@ public class Airport {
 	
 	public List<Flight> searchByDate(String datefirst, String dateLast, List<Flight> allFlights){
 		LocalDateTime fisrtDate = stringToDate(datefirst);
-		System.out.println("and now for the end time");
 		LocalDateTime lastDate = stringToDate(dateLast);
-		for (int i = 0; i < arrivals.size(); i++) {
-			if (!(arrivals.get(i).getDateAndTime().isAfter(fisrtDate)
-					&& arrivals.get(i).getDateAndTime().isBefore(lastDate))) {
+		
+		for (int i = allFlights.size()-1; i >= 0; i--) {
+			if (!(allFlights.get(i).getDateAndTime().isAfter(fisrtDate)
+					&& allFlights.get(i).getDateAndTime().isBefore(lastDate))) {
 				allFlights.remove(i);
-				i--;
-			}
-		}
-
-		for (int j = 0; j < departures.size(); j++) {
-				if (!(departures.get(j).getDateAndTime().isAfter(fisrtDate)
-						&& departures.get(j).getDateAndTime().isBefore(lastDate))) {
-					allFlights.remove(j);
-					j--;
 			}
 		}
 		return allFlights;
 	}
 	
+	public List<Flight> searchByDay(String day, List<Flight> allFlights) {
+		for (int i = 0; i < allFlights.size(); i++) {
+			if (!(allFlights.get(i).getDay().equals(day))) {
+				allFlights.remove(i);
+				i--;
+			}
+		}
+		return allFlights;
+	}
 	
 	public LocalDateTime stringToDate(String dateandTime) {
 		String[] dateAndTimeS= dateandTime.split(" ");

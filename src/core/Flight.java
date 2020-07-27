@@ -15,6 +15,7 @@ public class Flight  {
 	private int terminal;
 	private String origin;
 	private String destination;
+	private String dayOfWeek;
 	
 	DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");  
 	
@@ -31,6 +32,7 @@ public class Flight  {
 		this.flightNumber=flightNumber;
 		setTerminal(terminal);
 		setKind();
+		this.dayOfWeek=this.dateAndTime.getDayOfWeek().toString();
 	}
 	
 	 public Flight(Scanner scan) throws ParseException {
@@ -64,6 +66,7 @@ public class Flight  {
 		 System.out.println("enter terminal");
 		 int terminalNum= scan.nextInt();
 		 setTerminal(terminalNum);
+		 this.dayOfWeek=this.dateAndTime.getDayOfWeek().toString();
 	 }
 	 
 	public Flight(Flight flight) {
@@ -74,6 +77,7 @@ public class Flight  {
 		this.flightNumber=flight.flightNumber;
 		setTerminal(flight.terminal);
 		this.kind=flight.kind;
+		this.dayOfWeek=this.dateAndTime.getDayOfWeek().toString();
 	}
 
 	public LocalDateTime getDateAndTime() {
@@ -87,9 +91,9 @@ public class Flight  {
 	public String toString() {
 		String formatDateTime = dateAndTime.format(format);  
 		if(kind.name().equals("Arrival")) {
-			return "Arrival: airline name="+airline +", origin="+origin+", date and time="+formatDateTime+", flight number="+flightNumber+", terminal="+terminal+"\n";
+			return "Arrival: airline name="+airline +", origin="+origin+", date and time="+formatDateTime+", day="+dayOfWeek+", flight number="+flightNumber+", terminal="+terminal+"\n";
 		}
-		return "Departure: airlineName=" + airline+", destination="+destination+", date and time= "+formatDateTime+", flight number="+flightNumber+", terminal="+terminal+"\n";
+		return "Departure: airlineName=" + airline+", destination="+destination+", date and time= "+formatDateTime+", day="+dayOfWeek+", flight number="+flightNumber+", terminal="+terminal+"\n";
 	}
 	
 	private void setTerminal(int term) {
@@ -122,6 +126,7 @@ public class Flight  {
 		int hours=Integer.parseUnsignedInt(timeArray[0]);
 		int minutes=Integer.parseUnsignedInt(timeArray[1]);
 		this.dateAndTime=LocalDateTime.of(year, month, day, hours, minutes);
+		this.dayOfWeek=scan.nextLine();
 		this.flightNumber=scan.nextLine();
 		this.terminal=scan.nextInt();
 		setKind();
@@ -134,6 +139,7 @@ public class Flight  {
 		writer.println(this.origin);
 		String formatDateTime = dateAndTime.format(format);  
 		writer.println(formatDateTime);
+		writer.println(this.dayOfWeek);
 		writer.println(this.flightNumber);
 		writer.println(this.terminal);
 	}
@@ -158,6 +164,10 @@ public class Flight  {
 
 	public String getDestination() {
 		return destination;
+	}
+
+	public String getDay() {
+		return dayOfWeek;
 	}
 
 	
