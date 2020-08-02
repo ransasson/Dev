@@ -19,10 +19,6 @@ public class Flight  {
 	
 	DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");  
 	
-	public Flight() {
-		
-	}
-	
 	public Flight(String airline, String destination,String origin, int year, int month, int day, int hours,
 			int minutes, String flightNumber, int terminal  ) {
 		this.airline=airline;
