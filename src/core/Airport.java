@@ -171,7 +171,7 @@ public class Airport {
 		return sb.toString();
 	}
 
-	public String searchFlights(boolean byKind, boolean byAirline, boolean byOrigin, boolean ByDestenation ,
+	public String searchFlights(boolean isHtml, boolean byKind, boolean byAirline, boolean byOrigin, boolean ByDestenation ,
 			boolean byFlighNumber, boolean byDate, boolean byDay,boolean byCity,boolean byCountry,boolean byAirport, String kind, String airline, String origin, String destenation,
 			String flightNumber,String datefirst, String dateLast, String day,String city,String country,String airport) {
 		SearchEngine helper= new SearchEngine( byKind,  byAirline,  byOrigin,  ByDestenation ,
@@ -219,9 +219,9 @@ public class Airport {
 		}
 		StringBuffer sb= new StringBuffer();
 		if(flightAfterSearch.size()!=0) {
-			sb.append("Here are all the flights according to your search:\n");
+			sb.append("Here are all the flights according to your search:<br>");
 			for (int i = 0; i < flightAfterSearch.size(); i++) {
-				sb.append(flightAfterSearch.get(i).toString());
+				sb.append(flightAfterSearch.get(i).toString()+"<br>");
 			}
 		}else {
 			sb.append("No flights found");
