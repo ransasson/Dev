@@ -124,12 +124,14 @@ public class Program {
 		Flight flight3 = new Flight("Israir", "Tlv", "Tabilisi", 2020, 6, 1, 14, 35, "6H896", 3,"Tabilisi International Airport","Georgia");
 		Flight flight4 = new Flight("United Airlines", "Tlv", "New York", 2020, 5, 13, 12, 45, "UA090", 3,"JFK","USA");
 		Flight flight5= new Flight("elal", "paris", "Tlv",  2020,6,14,00,00, "LY420", 3, "CDG", "france");
+		Flight flight6= new Flight("elal", "paris", "Tlv",  2020,7,15,00,00, "LY255", 3, "CDG", "france");
 
 		airport.addFlight(flight1);
 		airport.addFlight(flight2);
 		airport.addFlight(flight3);
 		airport.addFlight(flight4);
 		airport.addFlight(flight5);
+		airport.addFlight(flight6);
 		String str = "";
 		//from server
 		if (isHtml) {			
