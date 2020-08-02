@@ -132,17 +132,8 @@ public class Airport {
 		if(helper.isByDate()) {
 			flightAfterSearch=searchByDate(helper.getDatefirst(),helper.getDatelast(), flightAfterSearch);
 		}
-		if(helper.isByDestenation()) {
-			flightAfterSearch=searchByDestenation(helper.getDestenation(), flightAfterSearch);
-		}
-		if(helper.isByFlighNumber()) {
-			flightAfterSearch=searchByFlightNumner(helper.getFlightNumber(), flightAfterSearch);
-		}
 		if(helper.isByKind()) {
 			flightAfterSearch=searchByKind(helper.getKind(), flightAfterSearch);
-		}
-		if(helper.isByOrigin()) {
-			flightAfterSearch=searchByOrigin(helper.getOrigin(), flightAfterSearch);
 		}
 		if(helper.isByDay()) {
 			flightAfterSearch=searchByDay(helper.getDay(), flightAfterSearch);
@@ -171,12 +162,9 @@ public class Airport {
 		return sb.toString();
 	}
 
-	public String searchFlights(boolean byKind, boolean byAirline, boolean byOrigin, boolean ByDestenation ,
-			boolean byFlighNumber, boolean byDate, boolean byDay,boolean byCity,boolean byCountry,boolean byAirport, String kind, String airline, String origin, String destenation,
-			String flightNumber,String datefirst, String dateLast, String day,String city,String country,String airport) {
-		SearchEngine helper= new SearchEngine( byKind,  byAirline,  byOrigin,  ByDestenation ,
-				 byFlighNumber,  byDate, byDay,byCity,byCountry,byAirport, kind,  airline,  origin,  destenation,
-				 flightNumber, datefirst,  dateLast, day,city,country,airport);
+	public String searchFlights(boolean isHtml, boolean byKind, boolean byAirline , boolean byDate, boolean byDay,boolean byCity,boolean byCountry,boolean byAirport, 
+			String kind, String airline,String datefirst, String dateLast, String day,String city,String country,String airport) {
+		SearchEngine helper= new SearchEngine( byKind,  byAirline, byDate, byDay,byCity,byCountry,byAirport, kind,  airline, datefirst,  dateLast, day,city,country,airport);
 		List<Flight> flightAfterSearch=new ArrayList<Flight>();;
 		for (int i = 0; i < arrivals.size(); i++) {
 			Flight temp=new Flight(arrivals.get(i));
@@ -193,17 +181,8 @@ public class Airport {
 		if(helper.isByDate()) {
 			flightAfterSearch=searchByDate(helper.getDatefirst(),helper.getDatelast(), flightAfterSearch);
 		}
-		if(helper.isByDestenation()) {
-			flightAfterSearch=searchByDestenation(helper.getDestenation(), flightAfterSearch);
-		}
-		if(helper.isByFlighNumber()) {
-			flightAfterSearch=searchByFlightNumner(helper.getFlightNumber(), flightAfterSearch);
-		}
 		if(helper.isByKind()) {
 			flightAfterSearch=searchByKind(helper.getKind(), flightAfterSearch);
-		}
-		if(helper.isByOrigin()) {
-			flightAfterSearch=searchByOrigin(helper.getOrigin(), flightAfterSearch);
 		}
 		if(helper.isByDay()) {
 			flightAfterSearch=searchByDay(helper.getDay(), flightAfterSearch);
@@ -219,9 +198,9 @@ public class Airport {
 		}
 		StringBuffer sb= new StringBuffer();
 		if(flightAfterSearch.size()!=0) {
-			sb.append("Here are all the flights according to your search:\n");
+			sb.append("Here are all the flights according to your search:<br>\n");
 			for (int i = 0; i < flightAfterSearch.size(); i++) {
-				sb.append(flightAfterSearch.get(i).toString());
+				sb.append(flightAfterSearch.get(i).toString()+"<br>");
 			}
 		}else {
 			sb.append("No flights found");
