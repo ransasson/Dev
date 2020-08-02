@@ -133,8 +133,8 @@ public class Program {
 		String str = "";
 		//from server
 		if (isHtml) {			
-			String flights=airport.searchFlights(isHtml,true, byAirline, false, false, false, byDate, byDay, byCity, byCountry,
-					byAirport, kind, airLine, "", "", "", firstDate.toString(), secondDate.toString(), day, city, country, airportName);
+			String flights=airport.searchFlights(isHtml,true, byAirline, byDate, byDay, byCity, byCountry,
+					byAirport, kind, airLine, firstDate.toString(), secondDate.toString(), day, city, country, airportName);
 			System.out.println(flights);
 		} else {
 			do {

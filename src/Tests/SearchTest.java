@@ -13,10 +13,10 @@ public class SearchTest {
 	@Test
 	public void searchByKindArrivalTest() {
 		Airport airport=createAirport();
-		StringBuffer expectedResult = new StringBuffer("Here are all the flights according to your search:\n");
-		expectedResult.append("Arrival: airline name=Israir, origin city=Tabilisi, origin country=Georgia,origin airport=Tabilisi International Airport, date and time=01/06/2020 14:35, day=MONDAY, flight number=6H896, terminal=3\n" );
+		StringBuffer expectedResult = new StringBuffer("Here are all the flights according to your search:<br>\n");
+		expectedResult.append("Arrival: airline name=Israir, origin city=Tabilisi, origin country=Georgia,origin airport=Tabilisi International Airport, date and time=01/06/2020 14:35, day=MONDAY, flight number=6H896, terminal=3\n<br>" );
 		
-		assertEquals(expectedResult.toString(),airport.searchFlights(false,true,true,false,false,false,false,false,false,false,false,"Arrival","Israir","","","","","","","","",""));
+		assertEquals(expectedResult.toString(),airport.searchFlights(false,true,true,false,false,false,false,false,"Arrival","Israir","","","","","",""));
 	}
 	
 	
