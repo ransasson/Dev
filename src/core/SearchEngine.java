@@ -58,16 +58,22 @@ public class SearchEngine {
 			System.out.println("which date last? dd/mm/yyyy hh:mm");
 			dateLast=scan.nextLine();
 		}
+		System.out.println("If you would like to search by City enter true else false");
+		byCity=scan.nextBoolean();
 		if(byCity) {
 			System.out.println("which city?");
 			scan.nextLine();
 			city=scan.nextLine();
 		}
+		System.out.println("If you would like to search by Country enter true else false");
+		byCountry=scan.nextBoolean();
 		if(byCountry) {
 			System.out.println("which country?");
 			scan.nextLine();
 			country=scan.nextLine();
 		}
+		System.out.println("If you would like to search by Airport enter true else false");
+		byAirport=scan.nextBoolean();
 		if(byAirport) {
 			System.out.println("which airport?");
 			scan.nextLine();

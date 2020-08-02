@@ -32,6 +32,8 @@ public class Flight  {
 		setTerminal(terminal);
 		setKind();
 		this.dayOfWeek=this.dateAndTime.getDayOfWeek().toString();
+		this.country=country;
+		this.airport=airport;
 	}
 	
 	 public Flight(Scanner scan) throws ParseException {
@@ -88,6 +90,9 @@ public class Flight  {
 		setTerminal(flight.terminal);
 		this.kind=flight.kind;
 		this.dayOfWeek=this.dateAndTime.getDayOfWeek().toString();
+		this.city=flight.city;
+		this.country=flight.country;
+		this.airport=flight.airport;
 	}
 	
 	public Flight() {
@@ -121,9 +126,11 @@ public class Flight  {
 		if(this.destination.equalsIgnoreCase("tlv")) {
 			this.city=origin;
 			this.kind=eFlight.Arrival;
-		}else
+		}
+		else {
 			this.city=destination;
 			this.kind=eFlight.Departure;
+		}
 	}
 	
 	public void read(Scanner scan) throws ParseException {

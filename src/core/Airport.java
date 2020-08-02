@@ -147,6 +147,16 @@ public class Airport {
 		if(helper.isByDay()) {
 			flightAfterSearch=searchByDay(helper.getDay(), flightAfterSearch);
 		}
+		if(helper.isByCity()) {
+			flightAfterSearch=searchByCity(helper.getCity(), flightAfterSearch);
+		}
+		if(helper.isByCountry()) {
+			flightAfterSearch=searchByCountry(helper.getCountry(), flightAfterSearch);
+		}
+		if(helper.isByAirport()) {
+			flightAfterSearch=searchByAirport(helper.getAirport(), flightAfterSearch);
+		}
+		
 		
 		StringBuffer sb= new StringBuffer();
 		if(flightAfterSearch.size()!=0) {
