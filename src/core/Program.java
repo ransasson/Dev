@@ -9,9 +9,10 @@ public class Program {
 
 	public static void main(String[] args) throws FileNotFoundException, ParseException {
 		//// using args////
-
 		boolean isHtml = args.length > 0 && args[0].equalsIgnoreCase("html");
 		boolean isDepartures = args.length > 1 && args[1].equalsIgnoreCase("departures");
+		
+		
 
 		Scanner scan = new Scanner(System.in);
 		File f = new File("Airport");
@@ -28,15 +29,14 @@ public class Program {
 		airport.addFlight(flight3);
 		airport.addFlight(flight4);
 		String str = "";
-		if (args.length > 0) {
-			System.out.println("Hello");
+		//from server
+		if (isHtml) {
 			if (isDepartures) {
 				String departures = airport.showDepartures();
 				System.out.println(departures);
 				if (isHtml) {
 					System.out.println("<br>");
 				}
-
 			} else {
 				String arrivals = airport.showArrivals();
 				System.out.println(arrivals);
@@ -44,37 +44,37 @@ public class Program {
 					System.out.println("<br>");
 				}
 			}
+		} else {
+			do {
+				menu();
+				choice = scan.nextInt();
+				switch (choice) {
+				case 1:
+					airport.addFlight(scan);
+					break;
+				case 2:
+					String departures = airport.showDepartures();
+					System.out.println(departures);
+					break;
+				case 3:
+					String arrivals = airport.showArrivals();
+					System.out.println(arrivals);
+					break;
+				case 4:
+					airport.writeToFile(f);
+					break;
+				case 5:
+					airport.readFromFile(f);
+					break;
+				case 6:
+					str = airport.searchFlights(scan);
+					System.out.println(str);
+					break;
+				default:
+					System.out.println("option unavailable");
+				}
+			} while (choice != -1);
 		}
-
-		do {
-			menu();
-			choice = scan.nextInt();
-			switch (choice) {
-			case 1:
-				airport.addFlight(scan);
-				break;
-			case 2:
-				String departures = airport.showDepartures();
-				System.out.println(departures);
-				break;
-			case 3:
-				String arrivals = airport.showArrivals();
-				System.out.println(arrivals);
-				break;
-			case 4:
-				airport.writeToFile(f);
-				break;
-			case 5:
-				airport.readFromFile(f);
-				break;
-			case 6:
-				str = airport.searchFlights(scan);
-				System.out.println(str);
-				break;
-			default:
-				System.out.println("option unavailable");
-			}
-		} while (choice != -1);
 	}
 
 	public static final int Add_Flight = 1;
