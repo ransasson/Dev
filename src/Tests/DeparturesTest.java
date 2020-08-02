@@ -22,8 +22,8 @@ public class DeparturesTest {
 
 	private Airport createAirport() {
 		Airport airport= new Airport("Hithrow");
-		Flight flight1= new Flight("El al", "London", "Tlv", 2020, 5, 20, 10, 10, "LY315", 3);
-		Flight flight2= new Flight("El al", "New York", "Tlv", 2020, 5, 20, 00, 45, "LY001", 3);
+		Flight flight1= new Flight("El al", "London", "Tlv", 2020, 5, 20, 10, 10, "LY315", 3,"Heathrow","England");
+		Flight flight2= new Flight("El al", "New York", "Tlv", 2020, 5, 20, 00, 45, "LY001", 3,"JFK","USA");
 		airport.addFlight(flight1);
 		airport.addFlight(flight2);
 		return airport;

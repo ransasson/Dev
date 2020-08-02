@@ -19,10 +19,10 @@ public class Program {
 		Airport airport = new Airport("Natbag");
 		int choice = 0;
 
-		Flight flight1 = new Flight("El al", "London", "Tlv", 2020, 5, 20, 10, 10, "LY315", 3);
-		Flight flight2 = new Flight("El al", "New York", "Tlv", 2020, 5, 20, 00, 45, "LY001", 3);
-		Flight flight3 = new Flight("Israir", "Tlv", "Tabilisi", 2020, 6, 1, 14, 35, "6H896", 3);
-		Flight flight4 = new Flight("United Airlines", "Tlv", "New York", 2020, 5, 13, 12, 45, "UA090", 3);
+		Flight flight1 = new Flight("El al", "London", "Tlv", 2020, 5, 20, 10, 10, "LY315", 3,"Heathrow","England");
+		Flight flight2 = new Flight("El al", "New York", "Tlv", 2020, 5, 20, 00, 45, "LY001", 3,"JFK","USA");
+		Flight flight3 = new Flight("Israir", "Tlv", "Tabilisi", 2020, 6, 1, 14, 35, "6H896", 3,"Tabilisi International Airport","Georgia");
+		Flight flight4 = new Flight("United Airlines", "Tlv", "New York", 2020, 5, 13, 12, 45, "UA090", 3,"JFK","USA");
 
 		airport.addFlight(flight1);
 		airport.addFlight(flight2);
