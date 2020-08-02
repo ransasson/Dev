@@ -3,8 +3,8 @@ package core;
 import java.util.Scanner;
 
 public class SearchEngine {
-	private boolean byKind, byAirline, byOrigin,ByDestenation, byFlighNumber, byDate, byDay;
-	private String kind,airline,origin,destenation, flightNumber,dateFirst, dateLast, day;
+	private boolean byKind, byAirline, byOrigin,ByDestenation, byFlighNumber, byDate, byDay,byCity,byCountry,byAirport;
+	private String kind,airline,origin,destenation, flightNumber,dateFirst, dateLast, day,city,country,airport;
 	
 	public SearchEngine(Scanner scan) {
 		System.out.println("If you would like to search by kind enter true else false");
@@ -58,10 +58,31 @@ public class SearchEngine {
 			System.out.println("which date last? dd/mm/yyyy hh:mm");
 			dateLast=scan.nextLine();
 		}
+		System.out.println("If you would like to search by City enter true else false");
+		byCity=scan.nextBoolean();
+		if(byCity) {
+			System.out.println("which city?");
+			scan.nextLine();
+			city=scan.nextLine();
+		}
+		System.out.println("If you would like to search by Country enter true else false");
+		byCountry=scan.nextBoolean();
+		if(byCountry) {
+			System.out.println("which country?");
+			scan.nextLine();
+			country=scan.nextLine();
+		}
+		System.out.println("If you would like to search by Airport enter true else false");
+		byAirport=scan.nextBoolean();
+		if(byAirport) {
+			System.out.println("which airport?");
+			scan.nextLine();
+			airport=scan.nextLine();
+		}
 	}
 	public SearchEngine(boolean byKind, boolean byAirline, boolean byOrigin, boolean ByDestenation ,
-			boolean byFlighNumber, boolean byDate, boolean byDay, String kind, String airline, String origin, String destenation,
-			String flightNumber,String datefirst, String dateLast, String day) {
+			boolean byFlighNumber, boolean byDate, boolean byDay,boolean byCity,boolean byCountry,boolean byAirport, String kind, String airline, String origin, String destenation,
+			String flightNumber,String datefirst, String dateLast, String day,String city,String country,String airport) {
 		this.byKind=byKind;
 		this.byAirline=byAirline;
 		this.byOrigin=byOrigin;
@@ -69,6 +90,9 @@ public class SearchEngine {
 		this.byFlighNumber=byFlighNumber;
 		this.byDate=byDate;
 		this.byDay=byDay;
+		this.byCity=byCity;
+		this.byCountry=byCountry;
+		this.byAirport=byAirport;
 		this.kind=kind;
 		this.airline=airline;
 		this.origin=origin;
@@ -77,6 +101,9 @@ public class SearchEngine {
 		this.dateFirst=datefirst;
 		this.dateLast=dateLast;
 		this.day=day;
+		this.city=city;
+		this.country=country;
+		this.airport=airport;
 	}
 	
 
@@ -112,6 +139,19 @@ public class SearchEngine {
 	public boolean isByDay() {
 		return byDay;
 	}
+	
+	public boolean isByCity() {
+		return byCity;
+	}
+	
+	public boolean isByCountry() {
+		return byCountry;
+	}
+	
+	public boolean isByAirport() {
+		return byAirport;
+	}
+	
 	public String getKind() {
 		return kind;
 	}
@@ -141,6 +181,18 @@ public class SearchEngine {
 	
 	public String getDay() {
 		return day;
+	}
+	
+	public String getCity() {
+		return city;
+	}
+	
+	public String getCountry() {
+		return country;
+	}
+	
+	public String getAirport() {
+		return airport;
 	}
 	
 	
