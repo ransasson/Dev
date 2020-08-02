@@ -13,8 +13,8 @@ public class DeparturesTest {
 		StringBuffer expectedResult = new StringBuffer();
 		expectedResult.append("Here are all the departures:\n");
 		
-		expectedResult.append("Departure: airlineName=El al, destination=New York, destination city=Tlv, destination country=USA,destination airport=JFK, date and time= 20/05/2020 00:45, day=WEDNESDAY, flight number=LY001, terminal=3");
-		expectedResult.append("Departure: airlineName=El al, destination=London, destination city=Tlv, destination country=England,destination airport=Heathrow, date and time= 20/05/2020 10:10, day=WEDNESDAY, flight number=LY315, terminal=3");
+		expectedResult.append("Departure: airlineName=El al, destination=New York, destination city=Tlv, destination country=USA,destination airport=JFK, date and time= 20/05/2020 00:45, day=WEDNESDAY, flight number=LY001, terminal=3\n");
+		expectedResult.append("Departure: airlineName=El al, destination=London, destination city=Tlv, destination country=England,destination airport=Heathrow, date and time= 20/05/2020 10:10, day=WEDNESDAY, flight number=LY315, terminal=3\n");
 		assertEquals(expectedResult.toString(),airport.showDepartures());
 	}
 
