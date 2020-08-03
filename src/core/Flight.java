@@ -11,6 +11,9 @@ public class Flight  {
 	private eFlight kind;
 	private String flightNumber;
 	private String airline;
+	private String airport;
+	private String city;
+	private String country;
 	private LocalDateTime dateAndTime;
 	private int terminal;
 	private String origin;
@@ -19,12 +22,8 @@ public class Flight  {
 	
 	DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");  
 	
-	public Flight() {
-		
-	}
-	
 	public Flight(String airline, String destination,String origin, int year, int month, int day, int hours,
-			int minutes, String flightNumber, int terminal  ) {
+			int minutes, String flightNumber, int terminal,String airport,String country  ) {
 		this.airline=airline;
 		this.destination=destination;
 		this.origin=origin;
@@ -33,6 +32,8 @@ public class Flight  {
 		setTerminal(terminal);
 		setKind();
 		this.dayOfWeek=this.dateAndTime.getDayOfWeek().toString();
+		this.country=country;
+		this.airport=airport;
 	}
 	
 	 public Flight(Scanner scan) throws ParseException {
@@ -42,11 +43,21 @@ public class Flight  {
 			 System.out.println("enter origin");
 			 this.origin=scan.nextLine();
 			 this.destination="TLV";
+			 this.city=origin;
+			 System.out.println("enter origin country");
+			 this.country=scan.nextLine();
+			 System.out.println("enter origin airport");
+			 this.airport=scan.nextLine();
 		 }
 		 else {
 			 System.out.println("enter destination");
 			 this.destination=scan.nextLine();
 			 this.origin="TLV";
+			 this.city=destination;
+			 System.out.println("enter destination country");
+			 this.country=scan.nextLine();
+			 System.out.println("enter destination airport");
+			 this.airport=scan.nextLine();
 		 }
 		 System.out.println("enter airline");
 		 this.airline=scan.nextLine();
@@ -67,6 +78,7 @@ public class Flight  {
 		 int terminalNum= scan.nextInt();
 		 setTerminal(terminalNum);
 		 this.dayOfWeek=this.dateAndTime.getDayOfWeek().toString();
+		 
 	 }
 	 
 	public Flight(Flight flight) {
@@ -78,6 +90,13 @@ public class Flight  {
 		setTerminal(flight.terminal);
 		this.kind=flight.kind;
 		this.dayOfWeek=this.dateAndTime.getDayOfWeek().toString();
+		this.city=flight.city;
+		this.country=flight.country;
+		this.airport=flight.airport;
+	}
+	
+	public Flight() {
+		
 	}
 
 	public LocalDateTime getDateAndTime() {
@@ -91,9 +110,9 @@ public class Flight  {
 	public String toString() {
 		String formatDateTime = dateAndTime.format(format);  
 		if(kind.name().equals("Arrival")) {
-			return "Arrival: airline name="+airline +", origin="+origin+", date and time="+formatDateTime+", day="+dayOfWeek+", flight number="+flightNumber+", terminal="+terminal+"\n";
+			return "Arrival: airline name="+airline +", origin city="+origin+", origin country="+country+",origin airport="+airport+", date and time="+formatDateTime+", day="+dayOfWeek+", flight number="+flightNumber+", terminal="+terminal+"\n";
 		}
-		return "Departure: airlineName=" + airline+", destination="+destination+", date and time= "+formatDateTime+", day="+dayOfWeek+", flight number="+flightNumber+", terminal="+terminal+"\n";
+		return "Departure: airlineName=" + airline+", destination="+destination+", destination city="+origin+", destination country="+country+",destination airport="+airport+", date and time= "+formatDateTime+", day="+dayOfWeek+", flight number="+flightNumber+", terminal="+terminal+"\n";
 	}
 	
 	private void setTerminal(int term) {
@@ -105,9 +124,13 @@ public class Flight  {
 	
 	private void setKind() {
 		if(this.destination.equalsIgnoreCase("tlv")) {
+			this.city=origin;
 			this.kind=eFlight.Arrival;
-		}else
+		}
+		else {
+			this.city=destination;
 			this.kind=eFlight.Departure;
+		}
 	}
 	
 	public void read(Scanner scan) throws ParseException {
@@ -170,7 +193,17 @@ public class Flight  {
 		return dayOfWeek;
 	}
 
+	public String getCity() {
+		return city;
+	}
 	
+	public String getCountry() {
+		return country;
+	}
+	
+	public String getAirport() {
+		return airport;
+	}
 
 }
 
