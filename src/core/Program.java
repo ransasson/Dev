@@ -18,100 +18,104 @@ public class Program {
 		boolean byCountry = false;
 		boolean byCity = false;
 		boolean byAirport = false;
-		String kind= "";
-		String city= "";
-		String country= "";
-		String airportName= "";
+		String kind = "";
+		String city = "";
+		String country = "";
+		String airportName = "";
 		String airLine = "";
-		String day= "";
-		int day1=0;
-		int month1=0;
+		String day = "";
+		int day1 = 0;
+		int month1 = 0;
 		int year1 = 0;
-		int day2=0;
-		int month2=0;
-		int year2=0;
-		if(isDepartures) {
-			kind="departure";
-		}else {
-			kind="arrivals";
+		int day2 = 0;
+		int month2 = 0;
+		int year2 = 0;
+		if (isDepartures) {
+			kind = "departures";
+		} else {
+			kind = "arrivals";
 		}
-		if(args.length > 2) {
-			country=  args[2];
-			if(country!=""&&country!=null) {
-				byCountry=true;
+		if (args.length > 2) {
+			country = args[2];
+			if (country != "" && country != null) {
+				byCountry = true;
 			}
 		}
-		if(args.length > 3) {
-			city=  args[3];
-			country=  args[2];
-			if(city!="") {
-				byCity=true;
+		if (args.length > 3) {
+			city = args[3];
+			if (city != "") {
+				byCity = true;
 			}
 		}
-		if(args.length > 4) {
-			airportName=  args[4];
-			country=  args[2];
-			if(airportName!="") {
-				byAirport=true;
+		if (args.length > 4) {
+			airportName = args[4];
+			if (airportName != "") {
+				byAirport = true;
 			}
 		}
-		if(args.length > 5) {
-			airLine=  args[5];
-			if(airLine!="") {
-				byAirline=true;
+		if (args.length > 5) {
+			airLine = args[5];
+			if (airLine != "") {
+				byAirline = true;
 			}
 		}
 
-		if(args.length > 6) {
-			 day1= Integer.parseInt(args[6]);
-			if(day1>0 && day1<=31) {
-				byDate=true;
+		if (args.length > 6) {
+			day1 = Integer.parseInt(args[6]);
+			if (day1 > 0 && day1 <= 31) {
+				byDate = true;
 			}
 		}
-		if(args.length > 7) {
-			 month1= Integer.parseInt(args[7]);
+		if (args.length > 7) {
+			month1 = Integer.parseInt(args[7]);
 		}
-		if(args.length >8) {
-			 year1= Integer.parseInt(args[8]);
+		if (args.length > 8) {
+			year1 = Integer.parseInt(args[8]);
 		}
-		if(args.length > 9) {
-			 day2= Integer.parseInt(args[9]);
+		if (args.length > 9) {
+			day2 = Integer.parseInt(args[9]);
 		}
-		if(args.length > 10) {
-			 month2= Integer.parseInt(args[10]);
+		if (args.length > 10) {
+			month2 = Integer.parseInt(args[10]);
 		}
-		if(args.length > 11) {
-			 year2= Integer.parseInt(args[11]);
+		if (args.length > 11) {
+			year2 = Integer.parseInt(args[11]);
 		}
-		StringBuffer firstDate= new StringBuffer();
-		firstDate.append(day1+"/"+month1+"/"+year1+" 00:00");
-		StringBuffer secondDate= new StringBuffer();
-		secondDate.append(day2+"/"+month2+"/"+year2+" 00:00");
+		StringBuffer firstDate = new StringBuffer();
+		firstDate.append(day1 + "/" + month1 + "/" + year1 + " 00:00");
+		StringBuffer secondDate = new StringBuffer();
+		secondDate.append(day2 + "/" + month2 + "/" + year2 + " 00:00");
 
-		boolean sunday= args.length > 12 && args[12].equalsIgnoreCase("sunday");
-		boolean monday= args.length > 13 && args[13].equalsIgnoreCase("monday");
-		boolean tuesday= args.length > 14 && args[14].equalsIgnoreCase("tuesday");
-		boolean wednesday=args.length > 15 && args[15].equalsIgnoreCase("wednesday");
-		boolean thursday=args.length > 16 && args[16].equalsIgnoreCase("thursday");
-		boolean friday=args.length > 17 && args[17].equalsIgnoreCase("friday");
-		boolean saturday= args.length > 18 && args[18].equalsIgnoreCase("saturday");
+		boolean sunday = args.length > 12 && args[12].equalsIgnoreCase("sunday");
+		boolean monday = args.length > 13 && args[13].equalsIgnoreCase("monday");
+		boolean tuesday = args.length > 14 && args[14].equalsIgnoreCase("tuesday");
+		boolean wednesday = args.length > 15 && args[15].equalsIgnoreCase("wednesday");
+		boolean thursday = args.length > 16 && args[16].equalsIgnoreCase("thursday");
+		boolean friday = args.length > 17 && args[17].equalsIgnoreCase("friday");
+		boolean saturday = args.length > 18 && args[18].equalsIgnoreCase("saturday");
 
-		if(sunday || monday || thursday || tuesday || wednesday|| friday || saturday) {
-			byDay=true;
-			if(sunday) {
-				day="sunday";
-			}else if(monday) {
-				day="monday";
-			}else if(tuesday) {
-				day="tuesday";
-			}else if(wednesday) {
-				day="wednesday";
-			}else if(thursday) {
-				day="thursday";
-			}else if(friday) {
-				day="friday";
-			}else if(saturday) {
-				day="saturday";
+		if (sunday || monday || thursday || tuesday || wednesday || friday || saturday) {
+			byDay = true;
+			if (sunday) {
+				day = "sunday";
+			}
+			if (monday) {
+				day += " monday";
+			}
+			if (tuesday) {
+				day += " tuesday";
+			}
+			if (wednesday) {
+				day += " wednesday";
+			}
+			if (thursday) {
+				day += " thursday";
+			}
+			if (friday) {
+				day += " friday";
+			}
+			if (saturday) {
+				day += " saturday";
 			}
 		}
 
@@ -120,12 +124,15 @@ public class Program {
 		Airport airport = new Airport("Natbag");
 		int choice = 0;
 
-		Flight flight1 = new Flight("elal", "London", "Tlv", 2020, 5, 20, 10, 10, "LY315", 3,"Heathrow","England");
-		Flight flight2 = new Flight("elal", "New York", "Tlv", 2020, 5, 20, 00, 45, "LY001", 3,"JFK","USA");
-		Flight flight3 = new Flight("Israir", "Tlv", "Tabilisi", 2020, 6, 1, 14, 35, "6H896", 3,"Tabilisi International Airport","Georgia");
-		Flight flight4 = new Flight("United Airlines", "Tlv", "New York", 2020, 5, 13, 12, 45, "UA090", 3,"JFK","USA");
-		Flight flight5= new Flight("elal", "paris", "Tlv",  2020,6,14,00,00, "LY420", 3, "CDG", "france");
-		Flight flight6= new Flight("elal", "paris", "Tlv",  2020,7,15,00,00, "LY255", 3, "CDG", "france");
+		Flight flight1 = new Flight("elal", "London", "Tlv", 2020, 5, 20, 10, 10, "LY315", 3, "Heathrow", "England");
+		Flight flight2 = new Flight("elal", "New York", "Tlv", 2020, 5, 20, 00, 45, "LY001", 3, "JFK", "USA");
+		Flight flight3 = new Flight("Israir", "Tlv", "Tabilisi", 2020, 6, 1, 14, 35, "6H896", 3,
+				"Tabilisi International Airport", "Georgia");
+		Flight flight4 = new Flight("United Airlines", "Tlv", "New York", 2020, 5, 13, 12, 45, "UA090", 3, "JFK",
+				"USA");
+		Flight flight5 = new Flight("elal", "paris", "Tlv", 2020, 6, 14, 00, 00, "LY420", 3, "CDG", "france");
+		Flight flight6 = new Flight("elal", "paris", "Tlv", 2020, 7, 15, 00, 00, "LY255", 3, "CDG", "france");
+		Flight flight7 = new Flight("elal", "Tlv", "paris", 2020, 7, 15, 00, 00, "LY255", 3, "CDG", "france");
 
 		airport.addFlight(flight1);
 		airport.addFlight(flight2);
@@ -133,11 +140,12 @@ public class Program {
 		airport.addFlight(flight4);
 		airport.addFlight(flight5);
 		airport.addFlight(flight6);
+		airport.addFlight(flight7);
 		String str = "";
-		//from server
-		if (isHtml||isText) {
-			String flights=airport.searchFlights(isHtml,true, byAirline, byDate, byDay, byCity, byCountry,
-					byAirport, kind, airLine, firstDate.toString(), secondDate.toString(), day, city, country, airportName);
+		// from server
+		if (isHtml || isText) {
+			String flights = airport.searchFlights(isHtml, byAirline, byDate, byDay, byCity, byCountry, byAirport, kind,
+					airLine, firstDate.toString(), secondDate.toString(), day, city, country, airportName);
 			System.out.println(flights);
 		} else {
 			do {
