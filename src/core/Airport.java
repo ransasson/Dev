@@ -23,7 +23,7 @@ public class Airport {
 	}
 
 	public void addFlight(Flight flight) {
-		if (flight.getKind().equalsIgnoreCase("Arrival")) {
+		if (flight.getKind().equalsIgnoreCase("Arrivals")) {
 			arrivals.add(flight);
 		} else
 			departures.add(flight);
@@ -141,11 +141,11 @@ public class Airport {
 		return sb.toString();
 	}
 
-	public String searchFlights(boolean isHtml, boolean byAirline, boolean byDate, boolean byDay, boolean byCity,
-			boolean byCountry, boolean byAirport, String kind, String airline, String datefirst, String dateLast,
-			String day, String city, String country, String airport) {
-		SearchEngine helper = new SearchEngine(byAirline, byDate, byDay, byCity, byCountry, byAirport, kind, airline,
-				datefirst, dateLast, day, city, country, airport);
+	public String searchFlights(boolean isHtml, boolean byAirline, boolean byDate, boolean sunday,boolean monday,boolean tuesday,boolean wednesday,
+			boolean thursday,boolean friday,boolean saturday,boolean byCity, boolean byCountry, boolean byAirport, 
+			String kind, String airline, String datefirst, String dateLast, String city, String country, String airport) {
+		SearchEngine helper = new SearchEngine(byAirline, byDate, sunday,monday,tuesday,wednesday,thursday,friday,saturday, byCity, byCountry, byAirport, kind, airline,
+				datefirst, dateLast, city, country, airport);
 		List<Flight> flightsBeforeSearch = new ArrayList<Flight>();
 
 		for (int i = 0; i < arrivals.size(); i++) {
@@ -171,7 +171,7 @@ public class Airport {
 				if (isHtml) {
 					sb.append(flightAfterSearch.get(i).toString() + "<br>");
 				} else {
-					sb.append(flightAfterSearch.get(i).toString() + "\n");
+					sb.append(flightAfterSearch.get(i).toString());
 				}
 			}
 		} else {

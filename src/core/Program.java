@@ -14,7 +14,6 @@ public class Program {
 		boolean isDepartures = args.length > 1 && args[1].equalsIgnoreCase("departures");
 		boolean byAirline = false;
 		boolean byDate = false;
-		boolean byDay = false;
 		boolean byCountry = false;
 		boolean byCity = false;
 		boolean byAirport = false;
@@ -23,7 +22,6 @@ public class Program {
 		String country = "";
 		String airportName = "";
 		String airLine = "";
-		String day = "";
 		int day1 = 0;
 		int month1 = 0;
 		int year1 = 0;
@@ -93,31 +91,8 @@ public class Program {
 		boolean thursday = args.length > 16 && args[16].equalsIgnoreCase("thursday");
 		boolean friday = args.length > 17 && args[17].equalsIgnoreCase("friday");
 		boolean saturday = args.length > 18 && args[18].equalsIgnoreCase("saturday");
-
-		if (sunday || monday || thursday || tuesday || wednesday || friday || saturday) {
-			byDay = true;
-			if (sunday) {
-				day = "sunday";
-			}
-			if (monday) {
-				day += " monday";
-			}
-			if (tuesday) {
-				day += " tuesday";
-			}
-			if (wednesday) {
-				day += " wednesday";
-			}
-			if (thursday) {
-				day += " thursday";
-			}
-			if (friday) {
-				day += " friday";
-			}
-			if (saturday) {
-				day += " saturday";
-			}
-		}
+	
+		
 
 		Scanner scan = new Scanner(System.in);
 		File f = new File("Airport");
@@ -142,10 +117,12 @@ public class Program {
 		airport.addFlight(flight6);
 		airport.addFlight(flight7);
 		String str = "";
+		
+		
 		// from server
 		if (isHtml || isText) {
-			String flights = airport.searchFlights(isHtml, byAirline, byDate, byDay, byCity, byCountry, byAirport, kind,
-					airLine, firstDate.toString(), secondDate.toString(), day, city, country, airportName);
+			String flights= airport.searchFlights(isHtml, byAirline, byDate, sunday, monday, tuesday, wednesday, thursday, friday, saturday, byCity, byCountry, byAirport,
+					kind, airLine, firstDate.toString(), secondDate.toString(), city, country, airportName);
 			System.out.println(flights);
 		} else {
 			do {
