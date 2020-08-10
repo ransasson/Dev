@@ -10,6 +10,7 @@ public class Program {
 	public static void main(String[] args) throws FileNotFoundException, ParseException {
 		//// using args////
 		boolean isHtml = args.length > 0 && args[0].equalsIgnoreCase("html");
+		boolean isText = args.length > 0 && args[0].equalsIgnoreCase("text");
 		boolean isDepartures = args.length > 1 && args[1].equalsIgnoreCase("departures");
 		boolean byAirline = false;
 		boolean byDate = false;
@@ -36,7 +37,7 @@ public class Program {
 		}
 		if(args.length > 2) {
 			country=  args[2];
-			if(country!="") {
+			if(country!=""&&country!=null) {
 				byCountry=true;
 			}
 		}
@@ -60,7 +61,7 @@ public class Program {
 				byAirline=true;
 			}
 		}
-		
+
 		if(args.length > 6) {
 			 day1= Integer.parseInt(args[6]);
 			if(day1>0 && day1<=31) {
@@ -86,7 +87,7 @@ public class Program {
 		firstDate.append(day1+"/"+month1+"/"+year1+" 00:00");
 		StringBuffer secondDate= new StringBuffer();
 		secondDate.append(day2+"/"+month2+"/"+year2+" 00:00");
-		
+
 		boolean sunday= args.length > 12 && args[12].equalsIgnoreCase("sunday");
 		boolean monday= args.length > 13 && args[13].equalsIgnoreCase("monday");
 		boolean tuesday= args.length > 14 && args[14].equalsIgnoreCase("tuesday");
@@ -94,7 +95,7 @@ public class Program {
 		boolean thursday=args.length > 16 && args[16].equalsIgnoreCase("thursday");
 		boolean friday=args.length > 17 && args[17].equalsIgnoreCase("friday");
 		boolean saturday= args.length > 18 && args[18].equalsIgnoreCase("saturday");
-		
+
 		if(sunday || monday || thursday || tuesday || wednesday|| friday || saturday) {
 			byDay=true;
 			if(sunday) {
@@ -134,7 +135,7 @@ public class Program {
 		airport.addFlight(flight6);
 		String str = "";
 		//from server
-		if (isHtml) {			
+		if (isHtml||isText) {
 			String flights=airport.searchFlights(isHtml,true, byAirline, byDate, byDay, byCity, byCountry,
 					byAirport, kind, airLine, firstDate.toString(), secondDate.toString(), day, city, country, airportName);
 			System.out.println(flights);
