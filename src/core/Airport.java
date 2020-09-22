@@ -163,7 +163,7 @@ public class Airport {
 		StringBuffer sb = new StringBuffer();
 		if (flightAfterSearch.size() != 0) {
 			if (isHtml) {
-				sb.append("Here are all the flights according to your search:<br>");
+				sb.append("<h1>Here are all the flights according to your search:<br></h1>");
 			} else {
 				sb.append("Here are all the flights according to your search:\n");
 			}
@@ -175,7 +175,12 @@ public class Airport {
 				}
 			}
 		} else {
-			sb.append("No flights found");
+			if(isHtml){
+			sb.append("<h1>No flights found</h1>");
+			}
+			else{
+				sb.append("No flights found");
+			}
 		}
 		return sb.toString();
 	}
