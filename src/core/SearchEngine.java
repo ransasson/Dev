@@ -5,9 +5,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class SearchEngine {
-	private boolean byAirline, byDate, byDay, byCity, byCountry, byAirport;
-	private String kind, airline, dateFirst, dateLast, day, city, country, airport;
-	private String[] days = new String[7];
+	private boolean byAirline, byDate,sunday,monday,tuesday,wednesday,thursday,friday,saturday, byCity, byCountry, byAirport;
+	private String kind, airline, dateFirst, dateLast, city, country, airport;
 
 	public SearchEngine(Scanner scan) {
 
@@ -21,13 +20,21 @@ public class SearchEngine {
 			scan.nextLine();
 			airline = scan.nextLine();
 		}
-		System.out.println("If you would like to search by day in the week enter true else false");
-		byDay = scan.nextBoolean();
-		if (byDay) {
-			System.out.println("which day?");
-			scan.nextLine();
-			day = scan.nextLine();
-		}
+		System.out.println("If you would like to search by the day SUNDAY enter true else false");
+		sunday = scan.nextBoolean();
+		System.out.println("If you would like to search by the day MONDAY enter true else false");
+		monday = scan.nextBoolean();
+		System.out.println("If you would like to search by the day TUESDAY enter true else false");
+		tuesday = scan.nextBoolean();
+		System.out.println("If you would like to search by the day WEDNESDAY enter true else false");
+		wednesday = scan.nextBoolean();
+		System.out.println("If you would like to search by the day THURSDAY enter true else false");
+		thursday = scan.nextBoolean();
+		System.out.println("If you would like to search by the day FRIDAY enter true else false");
+		friday = scan.nextBoolean();
+		System.out.println("If you would like to search by the day SATURDAY enter true else false");
+		saturday = scan.nextBoolean();
+		
 		System.out.println("If you would like to search by Date enter true else false");
 		byDate = scan.nextBoolean();
 		if (byDate) {
@@ -60,12 +67,11 @@ public class SearchEngine {
 		}
 	}
 
-	public SearchEngine(boolean byAirline, boolean byDate, boolean byDay, boolean byCity, boolean byCountry,
-			boolean byAirport, String kind, String airline, String datefirst, String dateLast, String day, String city,
-			String country, String airport) {
+	public SearchEngine(boolean byAirline, boolean byDate, boolean sunday,boolean monday,boolean tuesday,boolean wednesday,
+			boolean thursday,boolean friday,boolean saturday, boolean byCity, boolean byCountry,
+			boolean byAirport, String kind, String airline, String datefirst, String dateLast,  String city,String country, String airport) {
 		this.byAirline = byAirline;
 		this.byDate = byDate;
-		this.byDay = byDay;
 		this.byCity = byCity;
 		this.byCountry = byCountry;
 		this.byAirport = byAirport;
@@ -73,95 +79,57 @@ public class SearchEngine {
 		this.airline = airline;
 		this.dateFirst = datefirst;
 		this.dateLast = dateLast;
-		splitDay(day);
 		this.city = city;
 		this.country = country;
 		this.airport = airport;
+		this.sunday=sunday;
+		this.monday=monday;
+		this.tuesday=tuesday;
+		this.wednesday= wednesday;
+		this.thursday=thursday;
+		this.friday=friday;
+		this.saturday=saturday;
 	}
 
-	private void splitDay(String day) {
-		day = day.trim();
-		days = day.split(" ");
-		if (days.length == 1) {
-			day = days[0];
-		}
-	}
 
-	public boolean isByAirline() {
-		return byAirline;
-	}
-
-	public boolean isByDate() {
-		return byDate;
-	}
-
-	public boolean isByDay() {
-		return byDay;
-	}
-
-	public boolean isByCity() {
-		return byCity;
-	}
-
-	public boolean isByCountry() {
-		return byCountry;
-	}
-
-	public boolean isByAirport() {
-		return byAirport;
-	}
-
-	public String getKind() {
-		return kind;
-	}
-
-	public String getAirline() {
-		return airline;
-	}
-
-	public String getDatefirst() {
-		return dateFirst;
-	}
-
-	public String getDatelast() {
-		return dateLast;
-	}
-
-	public String getDay() {
-		return day;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public String getCountry() {
-		return country;
-	}
-
-	public String getAirport() {
-		return airport;
-	}
 
 	public List<Flight> search(List<Flight> flightAfterSearch) {
 		flightAfterSearch = searchByKind(flightAfterSearch);
 
-		if (isByAirline()) {
+		if (byAirline) {
 			flightAfterSearch = searchByAirline(flightAfterSearch);
 		}
-		if (isByDate()) {
+		if (byDate) {
 			flightAfterSearch = searchByDate(flightAfterSearch);
 		}
-		if (isByDay()) {
-			flightAfterSearch = searchByDay(flightAfterSearch);
+		if (sunday) {
+			flightAfterSearch = searchBySunday(flightAfterSearch);
 		}
-		if (isByCity()) {
+		if (monday) {
+			flightAfterSearch = searchByMonday(flightAfterSearch);
+		}
+		if (tuesday) {
+			flightAfterSearch = searchByTuesday(flightAfterSearch);
+		}
+		if (wednesday) {
+			flightAfterSearch = searchByWednesday(flightAfterSearch);
+		}
+		if (thursday) {
+			flightAfterSearch = searchByThursday(flightAfterSearch);
+		}
+		if (friday) {
+			flightAfterSearch = searchByFriday(flightAfterSearch);
+		}
+		if (saturday) {
+			flightAfterSearch = searchBySaturday(flightAfterSearch);
+		}
+		if (byCity) {
 			flightAfterSearch = searchByCity(flightAfterSearch);
 		}
-		if (isByCountry()) {
+		if (byCountry) {
 			flightAfterSearch = searchByCountry(flightAfterSearch);
 		}
-		if (isByAirport()) {
+		if (byAirport) {
 			flightAfterSearch = searchByAirport(flightAfterSearch);
 		}
 		return flightAfterSearch;
@@ -209,18 +177,78 @@ public class SearchEngine {
 		}
 		return allFlights;
 	}
-
-	public List<Flight> searchByDay(List<Flight> allFlights) {
+	
+	private List<Flight> searchBySunday(List<Flight> allFlights) {
 		for (int i = 0; i < allFlights.size(); i++) {
-			for (int j = 0; j < days.length; j++) {
-				if (!(allFlights.get(i).getDay().equals(days[j]))) {
-					allFlights.remove(i);
-					i--;
-				}
+			if (!(allFlights.get(i).getDay().equalsIgnoreCase("sunday"))) {
+				allFlights.remove(i);
+				i--;
 			}
 		}
 		return allFlights;
 	}
+	
+	private List<Flight> searchByMonday(List<Flight> allFlights) {
+		for (int i = 0; i < allFlights.size(); i++) {
+			if (!(allFlights.get(i).getDay().equalsIgnoreCase("monday"))) {
+				allFlights.remove(i);
+				i--;
+			}
+		}
+		return allFlights;
+	}
+	
+	private List<Flight> searchByTuesday(List<Flight> allFlights) {
+		for (int i = 0; i < allFlights.size(); i++) {
+			if (!(allFlights.get(i).getDay().equalsIgnoreCase("tuesday"))) {
+				allFlights.remove(i);
+				i--;
+			}
+		}
+		return allFlights;
+	}
+	
+	private List<Flight> searchByWednesday(List<Flight> allFlights) {
+		for (int i = 0; i < allFlights.size(); i++) {
+			if (!(allFlights.get(i).getDay().equalsIgnoreCase("wednesday"))) {
+				allFlights.remove(i);
+				i--;
+			}
+		}
+		return allFlights;
+	}
+	
+	private List<Flight> searchByThursday(List<Flight> allFlights) {
+		for (int i = 0; i < allFlights.size(); i++) {
+			if (!(allFlights.get(i).getDay().equalsIgnoreCase("thursday"))) {
+				allFlights.remove(i);
+				i--;
+			}
+		}
+		return allFlights;
+	}
+	
+	private List<Flight> searchByFriday(List<Flight> allFlights) {
+		for (int i = 0; i < allFlights.size(); i++) {
+			if (!(allFlights.get(i).getDay().equalsIgnoreCase("friday"))) {
+				allFlights.remove(i);
+				i--;
+			}
+		}
+		return allFlights;
+	}
+	
+	private List<Flight> searchBySaturday(List<Flight> allFlights) {
+		for (int i = 0; i < allFlights.size(); i++) {
+			if (!(allFlights.get(i).getDay().equalsIgnoreCase("saturday"))) {
+				allFlights.remove(i);
+				i--;
+			}
+		}
+		return allFlights;
+	}
+
+
 
 	public List<Flight> searchByCity(List<Flight> allFlights) {
 		for (int i = 0; i < allFlights.size(); i++) {

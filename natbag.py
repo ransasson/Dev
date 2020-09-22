@@ -61,7 +61,7 @@ def get_data():
                             sunday, monday, tuesday, wednesday, thursday, friday, saturday)
 
     return '''<form method="POST">
-                  <h1>Please fill the specific fields you would like to search by:</h1><br>  
+                  <h1>Please fill all the fields you would like to search by:</h1><br>  
                   Direction: <input type="text" name="direction"><br>
                   Country: <input type="text" name="country"><br>
                   City: <input type="text" name="city"><br>
