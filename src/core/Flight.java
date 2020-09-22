@@ -110,9 +110,9 @@ public class Flight  {
 	public String toString() {
 		String formatDateTime = dateAndTime.format(format);
 		if(kind.name().equalsIgnoreCase("Arrivals")) {
-			return "Arrivals: airline name="+airline +", origin city="+origin+", origin country="+country+",origin airport="+airport+", date and time="+formatDateTime+", day="+dayOfWeek+", flight number="+flightNumber+", terminal="+terminal+"\n";
+			return "Arrival: airline name="+airline +", origin city="+origin+", origin country="+country+",origin airport="+airport+", date and time="+formatDateTime+", day="+dayOfWeek+", flight number="+flightNumber+", terminal="+terminal+"\n";
 		}
-		return "Departures: airlineName=" + airline+", destination="+destination+", destination city="+origin+", destination country="+country+",destination airport="+airport+", date and time= "+formatDateTime+", day="+dayOfWeek+", flight number="+flightNumber+", terminal="+terminal+"\n";
+		return "Departure: airlineName=" + airline+", destination="+destination+", destination city="+origin+", destination country="+country+",destination airport="+airport+", date and time= "+formatDateTime+", day="+dayOfWeek+", flight number="+flightNumber+", terminal="+terminal+"\n";
 	}
 
 	private void setTerminal(int term) {
