@@ -84,13 +84,13 @@ public class Program {
 		StringBuffer secondDate = new StringBuffer();
 		secondDate.append(day2 + "/" + month2 + "/" + year2 + " 00:00");
 
-		boolean sunday = args.length > 12 && args[12].equalsIgnoreCase("sunday");
-		boolean monday = args.length > 13 && args[13].equalsIgnoreCase("monday");
-		boolean tuesday = args.length > 14 && args[14].equalsIgnoreCase("tuesday");
-		boolean wednesday = args.length > 15 && args[15].equalsIgnoreCase("wednesday");
-		boolean thursday = args.length > 16 && args[16].equalsIgnoreCase("thursday");
-		boolean friday = args.length > 17 && args[17].equalsIgnoreCase("friday");
-		boolean saturday = args.length > 18 && args[18].equalsIgnoreCase("saturday");
+		boolean sunday = args.length > 12 && Boolean.parseBoolean(args[12]);
+		boolean monday = args.length > 13 && Boolean.parseBoolean(args[13]);
+		boolean tuesday = args.length > 14 && Boolean.parseBoolean(args[14]);
+		boolean wednesday = args.length > 15 && Boolean.parseBoolean(args[15]);
+		boolean thursday = args.length > 16 && Boolean.parseBoolean(args[16]);
+		boolean friday = args.length > 17 && Boolean.parseBoolean(args[17]);
+		boolean saturday = args.length > 18 && Boolean.parseBoolean(args[18]);
 	
 		
 
