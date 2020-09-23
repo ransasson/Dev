@@ -192,6 +192,24 @@ public class Flight  {
 	public String getDay() {
 		return dayOfWeek;
 	}
+	
+	public int getDayNum() {
+		if(dayOfWeek.equalsIgnoreCase("sunday")) {
+			return 0;
+		}else if (dayOfWeek.equalsIgnoreCase("monday")) {
+			return 1;
+		}else if (dayOfWeek.equalsIgnoreCase("tuesday")) {
+			return 2;
+		}else if (dayOfWeek.equalsIgnoreCase("wednesday")) {
+			return 3;
+		}else if (dayOfWeek.equalsIgnoreCase("thursday")) {
+			return 4;
+		}else if (dayOfWeek.equalsIgnoreCase("friday")) {
+			return 5;
+		}else {
+			return 6;
+		}
+	}
 
 	public String getCity() {
 		return city;

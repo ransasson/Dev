@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class SearchEngine {
 	private boolean byAirline, byDate,sunday,monday,tuesday,wednesday,thursday,friday,saturday, byCity, byCountry, byAirport;
 	private String kind, airline, dateFirst, dateLast, city, country, airport;
+	private boolean[] days;
 
 	public SearchEngine(Scanner scan) {
 
@@ -65,6 +66,8 @@ public class SearchEngine {
 			scan.nextLine();
 			airport = scan.nextLine();
 		}
+		
+		addDays();
 	}
 
 	public SearchEngine(boolean byAirline, boolean byDate, boolean sunday,boolean monday,boolean tuesday,boolean wednesday,
@@ -89,9 +92,21 @@ public class SearchEngine {
 		this.thursday=thursday;
 		this.friday=friday;
 		this.saturday=saturday;
+		
+		
+		addDays();
 	}
 
-
+	private void addDays() {
+		days= new boolean[7];
+		days[0]=this.sunday;
+		days[1]=this.monday;
+		days[2]=this.tuesday;
+		days[3]=this.wednesday;
+		days[4]=this.thursday;
+		days[5]=this.friday;
+		days[6]=this.saturday;
+	}
 
 	public List<Flight> search(List<Flight> flightAfterSearch) {
 		flightAfterSearch = searchByKind(flightAfterSearch);
@@ -102,27 +117,18 @@ public class SearchEngine {
 		if (byDate) {
 			flightAfterSearch = searchByDate(flightAfterSearch);
 		}
-		if (sunday) {
-			flightAfterSearch = searchBySunday(flightAfterSearch);
+		for (int i = 0; i < days.length; i++) {
+			if(days[i]==false) {
+				for (int j = 0; j < flightAfterSearch.size(); j++) {
+					if (flightAfterSearch.get(j).getDayNum()==i) {
+						flightAfterSearch.remove(j);
+						j--;
+					}
+				}
+				
+			}
 		}
-		if (monday) {
-			flightAfterSearch = searchByMonday(flightAfterSearch);
-		}
-		if (tuesday) {
-			flightAfterSearch = searchByTuesday(flightAfterSearch);
-		}
-		if (wednesday) {
-			flightAfterSearch = searchByWednesday(flightAfterSearch);
-		}
-		if (thursday) {
-			flightAfterSearch = searchByThursday(flightAfterSearch);
-		}
-		if (friday) {
-			flightAfterSearch = searchByFriday(flightAfterSearch);
-		}
-		if (saturday) {
-			flightAfterSearch = searchBySaturday(flightAfterSearch);
-		}
+
 		if (byCity) {
 			flightAfterSearch = searchByCity(flightAfterSearch);
 		}
@@ -177,77 +183,6 @@ public class SearchEngine {
 		}
 		return allFlights;
 	}
-	
-	private List<Flight> searchBySunday(List<Flight> allFlights) {
-		for (int i = 0; i < allFlights.size(); i++) {
-			if (!(allFlights.get(i).getDay().equalsIgnoreCase("sunday"))) {
-				allFlights.remove(i);
-				i--;
-			}
-		}
-		return allFlights;
-	}
-	
-	private List<Flight> searchByMonday(List<Flight> allFlights) {
-		for (int i = 0; i < allFlights.size(); i++) {
-			if (!(allFlights.get(i).getDay().equalsIgnoreCase("monday"))) {
-				allFlights.remove(i);
-				i--;
-			}
-		}
-		return allFlights;
-	}
-	
-	private List<Flight> searchByTuesday(List<Flight> allFlights) {
-		for (int i = 0; i < allFlights.size(); i++) {
-			if (!(allFlights.get(i).getDay().equalsIgnoreCase("tuesday"))) {
-				allFlights.remove(i);
-				i--;
-			}
-		}
-		return allFlights;
-	}
-	
-	private List<Flight> searchByWednesday(List<Flight> allFlights) {
-		for (int i = 0; i < allFlights.size(); i++) {
-			if (!(allFlights.get(i).getDay().equalsIgnoreCase("wednesday"))) {
-				allFlights.remove(i);
-				i--;
-			}
-		}
-		return allFlights;
-	}
-	
-	private List<Flight> searchByThursday(List<Flight> allFlights) {
-		for (int i = 0; i < allFlights.size(); i++) {
-			if (!(allFlights.get(i).getDay().equalsIgnoreCase("thursday"))) {
-				allFlights.remove(i);
-				i--;
-			}
-		}
-		return allFlights;
-	}
-	
-	private List<Flight> searchByFriday(List<Flight> allFlights) {
-		for (int i = 0; i < allFlights.size(); i++) {
-			if (!(allFlights.get(i).getDay().equalsIgnoreCase("friday"))) {
-				allFlights.remove(i);
-				i--;
-			}
-		}
-		return allFlights;
-	}
-	
-	private List<Flight> searchBySaturday(List<Flight> allFlights) {
-		for (int i = 0; i < allFlights.size(); i++) {
-			if (!(allFlights.get(i).getDay().equalsIgnoreCase("saturday"))) {
-				allFlights.remove(i);
-				i--;
-			}
-		}
-		return allFlights;
-	}
-
 
 
 	public List<Flight> searchByCity(List<Flight> allFlights) {
